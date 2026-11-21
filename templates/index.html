@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>House Price Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <nav>
+            <div class="logo">🏠 HomePredict</div>
+            <span>Machine Learning Project</span>
+        </nav>
+
+        <div class="content">
+
+            <div class="heading">
+                <h1>House Price Prediction</h1>
+
+                <p>
+                    Discover the estimated value of your property
+                    using Machine Learning.
+                </p>
+            </div>
+
+            <div class="form-card">
+
+                <h2>Enter House Details</h2>
+
+                <form action="/predict" method="POST">
+
+                    <div class="input-group">
+                        <label>Location</label>
+
+                        <input
+                            type="text"
+                            name="location"
+                            placeholder="Example: Whitefield"
+                            required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Area (Square Feet)</label>
+
+                        <input
+                            type="number"
+                            name="area"
+                            placeholder="Example: 1200"
+                            min="1"
+                            required>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="input-group">
+                            <label>Bedrooms (BHK)</label>
+
+                            <input
+                                type="number"
+                                name="bhk"
+                                placeholder="2"
+                                min="1"
+                                required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Bathrooms</label>
+
+                            <input
+                                type="number"
+                                name="bath"
+                                placeholder="2"
+                                min="1"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit">
+                        Predict House Price →
+                    </button>
+
+                </form>
+
+                {% if prediction_text %}
+                <div class="result">
+                    <h3>Estimated House Price</h3>
+                    <h2>{{ prediction_text }}</h2>
+                </div>
+                {% endif %}
+
+                {% if error_text %}
+                <div class="error">
+                    {{ error_text }}
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <footer>
+            House Price Prediction | Powered by Machine Learning
+        </footer>
+
+    </div>
+
+</body>
+</html>
